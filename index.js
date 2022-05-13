@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
-//const database = require("../database/index.js");
-const PORT = 3000;
+const database = require("../database/index.js");
+const PORT = 3001;
 const app = express();
 
 app.use(express.json());
@@ -9,16 +9,18 @@ app.use(express.urlencoded());
 
 app.use(express.static(path.join(__dirname, './client/dist')));
 
-// app.get('/', (req, res) => {
-//   let sql = ';';
-//   database.query(sql, (err, data) => {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
-//     res.send(data);
-//   })
-// })
+app.get('/', (req, res) => {
+  let sql = ';';
+  database.query(sql, (err, data) => {
+    if (err) {
+      console.log('clamity blamity');
+      return;
+    }
+    console.log('hello from get');
+    res.send(res);
+  })
+})
+
 
 // app.post('/', (req, res) => {
 //   let sql = ';'
@@ -34,5 +36,5 @@ app.use(express.static(path.join(__dirname, './client/dist')));
 // })
 
 app.listen(PORT, () => {
-  console.log(`Server listening at localhost:${3000}!`);
+  console.log(`Server listening at localhost:${3001}!`);
 });
